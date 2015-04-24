@@ -1,4 +1,5 @@
 //Dumbwaiter code
+//Emitter code
 //adapted from MAKE; "HOT-COLD LED"
 //Henry
 
@@ -6,9 +7,6 @@
 
 int SensorPinOne=13;
 int SensorPinTwo=12;
-int RedLedPin=6;
-int YellowLedPin=5;
-int GreenLedPin=3;
 int pulseDuration;
 int distance;
 int distanceOne;
@@ -18,8 +16,6 @@ unsigned long pulseDurationOne=0;
 unsigned long pulseDurationTwo=0;
 
 void setup() {
-  pinMode(RedLedPin,OUTPUT);
-  pinMode(GreenLedPin,OUTPUT);
 }
 
 void loop() {
@@ -63,31 +59,34 @@ delay(10);
   
   // light up red led: inverted linear of 0-15in to 0-255 eq. off to max. brightness
   if (distance > 0 && distance < 9.5){
-    analogWrite(RedLedPin, 0); 
+  //send R means Red on
+    Serial.print('R'); 
   } 
   else {
-    analogWrite(RedLedPin, 255);
+  //send r means Red off
+    Serial.print('r');
   }
 
   // light up yellow led: 0-25in ^= 0-255, 25-50in ^= 255-0 on YellowLedPin
   if (distance > 9.5 && distance <= 16.5){
-    analogWrite(YellowLedPin, 0);
+     //send Y means Yellow on
+    Serial.print('Y'); 
   } 
   else {
-    analogWrite(YellowLedPin, 255);
+     //send y means Yellow off
+    Serial.print('y'); 
   }
 
   // light up green led: 0-25in ^= 0-255, 25-50in ^= 255-0 on greenLedPin
   if (distance > 16.5 && distance <= 24){
  
-    analogWrite(GreenLedPin, 0);  
+      //send G means Green on
+    Serial.print('G');   
   } 
   else {
-    analogWrite(GreenLedPin, 255);
+    //send g means Green off
+    Serial.print('g'); 
   }
-
   // wait a little... 
   delay(200);
-
 }
-
