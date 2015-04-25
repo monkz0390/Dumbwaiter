@@ -77,5 +77,4 @@ delay(10);
   } 
    Serial.println();
   // wait a little... 
-  delay(200);
 }
