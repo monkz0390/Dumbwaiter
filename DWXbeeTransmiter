@@ -1,0 +1,80 @@
+//Dumbwaiter code
+//Emitter code
+//adapted from MAKE; "HOT-COLD LED"
+//Henry
+
+// define pins
+
+int SensorPinOne=13;
+int SensorPinTwo=12;
+int pulseDuration;
+int distance;
+int distanceOne;
+int distanceTwo;
+
+unsigned long pulseDurationOne=0;
+unsigned long pulseDurationTwo=0;
+
+void setup() {
+}
+
+void loop() {
+
+  // measure distance: send "PingOne"
+  pinMode(SensorPinOne, OUTPUT);
+  digitalWrite(SensorPinOne, HIGH);
+  delayMicroseconds(5);
+  digitalWrite(SensorPinOne, LOW);
+
+  // measure distance: listen for "PingOne"
+  pinMode(SensorPinOne, INPUT);
+  pulseDurationOne=pulseIn(SensorPinOne, HIGH);
+
+delay(10);
+
+ // measure distance: send "PingTwo"
+  pinMode(SensorPinTwo, OUTPUT);
+  digitalWrite(SensorPinTwo, HIGH);
+  delayMicroseconds(5);
+  digitalWrite(SensorPinTwo, LOW);
+
+  // measure distance: listen for "PingTwo"
+  pinMode(SensorPinTwo, INPUT);
+  pulseDurationTwo=pulseIn(SensorPinTwo, HIGH);
+  
+  
+  //Average of pulseDurationOne and pulseDurationTwo
+  pulseDuration=(pulseDurationOne+pulseDurationTwo)/2;
+  
+  // divide by two (back/forth to single trip), divide by speed of sound = distance in in
+  pulseDurationOne=pulseDurationOne/2; 
+  distanceOne = int(pulseDurationOne/74);
+  
+    // divide by two (back/forth to single trip), divide by speed of sound = distance in in
+  pulseDurationTwo=pulseDurationTwo/2; 
+  distanceTwo = int(pulseDurationTwo/74);
+
+//  distnce is lesser of both distnaces
+   distance = min(distanceOne,distanceTwo);
+  
+  // light up red led: inverted linear of 0-15in to 0-255 eq. off to max. brightness
+  if (distance > 0 && distance < 9.5){
+  //send R means Red on
+    Serial.print('R'); 
+  } 
+
+  // light up yellow led: 0-25in ^= 0-255, 25-50in ^= 255-0 on YellowLedPin
+  if (distance > 9.5 && distance <= 16.5){
+     //send Y means Yellow on
+    Serial.print('Y'); 
+  } 
+
+  // light up green led: 0-25in ^= 0-255, 25-50in ^= 255-0 on greenLedPin
+  if (distance > 16.5 && distance <= 24){
+ 
+      //send G means Green on
+    Serial.print('G');   
+  } 
+  // wait a little... 
+  delay(200);
+}
