@@ -75,6 +75,7 @@ delay(10);
       //send G means Green on
     Serial.print('G');   
   } 
+   Serial.println();
   // wait a little... 
   delay(200);
 }
