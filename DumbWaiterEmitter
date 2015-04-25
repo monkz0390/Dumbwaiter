@@ -62,20 +62,12 @@ delay(10);
   //send R means Red on
     Serial.print('R'); 
   } 
-  else {
-  //send r means Red off
-    Serial.print('r');
-  }
 
   // light up yellow led: 0-25in ^= 0-255, 25-50in ^= 255-0 on YellowLedPin
   if (distance > 9.5 && distance <= 16.5){
      //send Y means Yellow on
     Serial.print('Y'); 
   } 
-  else {
-     //send y means Yellow off
-    Serial.print('y'); 
-  }
 
   // light up green led: 0-25in ^= 0-255, 25-50in ^= 255-0 on greenLedPin
   if (distance > 16.5 && distance <= 24){
@@ -83,10 +75,6 @@ delay(10);
       //send G means Green on
     Serial.print('G');   
   } 
-  else {
-    //send g means Green off
-    Serial.print('g'); 
-  }
   // wait a little... 
   delay(200);
 }
