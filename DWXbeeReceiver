@@ -1,0 +1,43 @@
+const int RledPin = 5; // the pin that the RLED is attached to
+const int YledPin = 6; // the pin that the YLED is attached to
+const int GledPin = 7; // the pin that the GLED is attached to
+int incomingByte;      // a variable to read incoming serial data into
+
+void setup() {
+  // initialize serial communication:
+  Serial.begin(9600);
+  // initialize the LED pin as an output:
+  pinMode(RledPin, OUTPUT);
+  pinMode(YledPin, OUTPUT);
+  pinMode(GledPin, OUTPUT);
+}
+
+void loop() {
+  // see if there's incoming serial data:
+  if (Serial.available() > 0) {
+    // read the oldest byte in the serial buffer:
+    incomingByte = Serial.read();
+    
+    // if it's a capital R, turn on the RLED:
+    if (incomingByte == 'R') {
+      digitalWrite(RledPin, HIGH);
+    }
+    else{
+      digitalWrite(RledPin, LOW);
+    }
+    // if it's a capital Y, turn on the YLED:
+    if (incomingByte == 'Y') {
+      digitalWrite(YledPin, HIGH);
+    }
+    else{
+      digitalWrite(YledPin, LOW);
+    }
+    // if it's a capital G, turn on the GLED:
+    if (incomingByte == 'G') {
+      digitalWrite(GledPin, HIGH);
+    }
+    else{
+      digitalWrite(GledPin, LOW);
+    }
+  }
+ }
