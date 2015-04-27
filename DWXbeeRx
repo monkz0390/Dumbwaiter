@@ -21,6 +21,7 @@ void loop() {
     // if it's a capital R, turn on the RLED:
     if (incomingByte == 'R') {
       digitalWrite(RledPin, HIGH);
+      delay(20);
     }
     else{
       digitalWrite(RledPin, LOW);
@@ -28,6 +29,7 @@ void loop() {
     // if it's a capital Y, turn on the YLED:
     if (incomingByte == 'Y') {
       digitalWrite(YledPin, HIGH);
+      delay(20);
     }
     else{
       digitalWrite(YledPin, LOW);
@@ -35,6 +37,7 @@ void loop() {
     // if it's a capital G, turn on the GLED:
     if (incomingByte == 'G') {
       digitalWrite(GledPin, HIGH);
+      delay(20);
     }
     else{
       digitalWrite(GledPin, LOW);
