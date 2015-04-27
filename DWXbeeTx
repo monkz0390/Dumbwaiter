@@ -16,6 +16,7 @@ unsigned long pulseDurationOne=0;
 unsigned long pulseDurationTwo=0;
 
 void setup() {
+Serial.begin(9600);
 }
 
 void loop() {
