@@ -20,6 +20,7 @@ unsigned long pulseDurationTwo=0;
 void setup() {
   pinMode(RedLedPin,OUTPUT);
   pinMode(GreenLedPin,OUTPUT);
+  pinMode(YellowLedPin,OUTPUT);
 }
 
 void loop() {
